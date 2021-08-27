@@ -1,5 +1,7 @@
 # The cabbage game
 
+<img src='https://w.joelgrayson.com/image/certified.png' width=100>
+
 ## single target functions (a -> b)
 ### cabbage
 if the last word person a said was person b's name, person a may be able to cabbage person b depending on what follows.
