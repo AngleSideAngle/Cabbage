@@ -42,4 +42,4 @@ the repetitions of that word hit, anyone hearing can say turnip to person b
 - first, last name, and nicknames all work to cabbage someone, but you may not cabbage someone under a name they do not use.
 
 ### time dilation
-- all time, such as 10 second intervals, is measured relative to time on Earth
+- all time, such as 10 second intervals, is measured relative to time experienced on Earth
