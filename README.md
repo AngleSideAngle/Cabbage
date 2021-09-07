@@ -1,6 +1,7 @@
 # The cabbage game
 
 <img src='https://w.joelgrayson.com/image/certified.png' width=100>
+A variation, the Muffin Game 🧁, is available at https://joelgrayson.com/muffin
 
 ## single target functions (a -> b)
 ### cabbage
