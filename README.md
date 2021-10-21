@@ -46,3 +46,6 @@ the repetitions of that word hit, anyone hearing can say turnip to person b
 
 ### time dilation
 - all time, such as 10 second intervals, is measured relative to time experienced on Earth
+
+
+asa is sus
