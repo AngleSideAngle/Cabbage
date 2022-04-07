@@ -57,29 +57,29 @@ the repetitions of that word hit, anyone hearing can say turnip to person b
 
 ## examples
 ### cabbage
-A: Hi, B
-B: Hi
-A: Cabbage
+- A: Hi, B
+- B: Hi
+- A: Cabbage
 
 ### incorrect cabbage
-A: Hi, B. How are you?
-B: Hi!
-A: Cabbage
-B: Cabbage improper use
+- A: Hi, B. How are you?
+- B: Hi!
+- A: Cabbage
+- B: Cabbage improper use
 
 ### turnip (delay)
-A: Hi, B
-B: Hi!
-(10 seconds pass)
-A: turnip
+- A: Hi, B
+- B: Hi!
+- (10 seconds pass)
+- A: turnip
 
 ### turnip (repetition)
-A: Hi hi hi!
-B: Turnip
+- A: Hi hi hi!
+- B: Turnip
 
 ### nicknames
-A: Hi
-B: Hi, I'm really tired
-A: Hi tired
-B: What?
-A: Cabbage
+- A: Hi
+- B: Hi, I'm really tired
+- A: Hi tired
+- B: What?
+- A: Cabbage
