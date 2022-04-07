@@ -53,7 +53,6 @@ the repetitions of that word hit, anyone hearing can say turnip to person b
 
 ### clarifications
 - person b may be cabbaged by person a if and only if the last thing person a said was person b's name.
-- the game is not based on sentences, but 
 
 ## examples
 ### cabbage
