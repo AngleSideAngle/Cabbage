@@ -44,5 +44,42 @@ the repetitions of that word hit, anyone hearing can say turnip to person b
 ### names
 - first, last name, and nicknames all work to cabbage someone, but you may not cabbage someone under a name they do not use.
 
+### nicknames (variation)
+- if someone says minimuffin to a word, they may be cabbaged under it until midnight.
+- if someone indicates that they "are" a word, they may be cabbaged under it until midnight.
+
 ### time dilation
-- all time, such as 10 second intervals, is measured relative to time experienced on Earth
+- all time, such as 10 second intervals, is measured relative to time experienced on Earth.
+
+### clarifications
+- person b may be cabbaged by person a if and only if the last thing person a said was person b's name.
+- the game is not based on sentences, but 
+
+## examples
+### cabbage
+A: Hi, B
+B: Hi
+A: Cabbage
+
+### incorrect cabbage
+A: Hi, B. How are you?
+B: Hi!
+A: Cabbage
+B: Cabbage improper use
+
+### turnip (delay)
+A: Hi, B
+B: Hi!
+(10 seconds pass)
+A: turnip
+
+### turnip (repetition)
+A: Hi hi hi!
+B: Turnip
+
+### nicknames
+A: Hi
+B: Hi, I'm really tired
+A: Hi tired
+B: What?
+A: Cabbage
