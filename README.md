@@ -2,6 +2,7 @@
 
 <img src='https://w.joelgrayson.com/image/certified.png' width=100>
 A video game, the Muffin Game 🧁, is available at https://joelgrayson.com/muffin
+A simple interaction based Discord bot is also being worked on to handle single target cabbage functions.
 
 ## single target functions (a -> b)
 ### cabbage
