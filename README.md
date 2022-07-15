@@ -36,7 +36,8 @@ the repetitions of that word hit, anyone hearing can say turnip to person b
 - if there is more than 1 person b in a single target function, the function will apply individually to each person b
 
 ### text
-- when talking over text, the ability to cabbage someone if they do not respond for 10 seconds is invalid.
+- when talking over text, the ability to cabbage someone if they do not respond for 10 seconds is invalid
+- according to the scioly ruleset, a message can be appended with "[|]" to make it non aggressive, meaning the sender cannot use it to cabbage
 
 ### verbal
 - when talking in real life, if you say someone's name while they are talking, that name does not count to have been said until after they finish their sentence. (this applies to all rules for the cabbage function such as waiting 10 seconds or someone not saying minimuffin)
@@ -50,7 +51,7 @@ the repetitions of that word hit, anyone hearing can say turnip to person b
 - if someone indicates that they "are" a word, they may be cabbaged under it until midnight.
 
 ### time dilation
-- all time, such as 10 second intervals, is measured relative to time experienced on Earth.
+- due to special relativity, some rules, such as 10 second turnips, can be exploited by someone determined ... and insane enough
 
 ### clarifications
 - person b may be cabbaged by person a if and only if the last thing person a said was person b's name.
