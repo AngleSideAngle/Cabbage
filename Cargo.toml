@@ -17,4 +17,4 @@ features = ["macros", "signal", "rt-multi-thread"]
 [dependencies.serenity]
 default-features = true
 version = "0.11"
-features = ["cache", "framework", "standard_framework", "framework", "rustls_backend"]
+features = ["cache", "framework", "standard_framework", "framework", "rustls_backend", "model"]

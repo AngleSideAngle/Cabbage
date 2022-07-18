@@ -1,9 +1,12 @@
+#![allow(unused_imports)]
+
 use std::collections::{HashMap, HashSet};
-use std::env;
+use std::{env, string};
 use std::fmt::Write;
 use std::sync::Arc;
 
 use serenity::async_trait;
+use serenity::builder::CreateEmbed;
 use serenity::client::bridge::gateway::{ShardId, ShardManager};
 use serenity::framework::standard::buckets::{LimitedFor, RevertBucket};
 use serenity::framework::standard::macros::{check, command, group, help, hook};
@@ -19,19 +22,29 @@ use serenity::framework::standard::{
     StandardFramework,
 };
 use serenity::http::Http;
-use serenity::model::channel::{Channel, Message};
+use serenity::model::channel::{Channel, Message, Embed};
 use serenity::model::event::ResumedEvent;
 use serenity::model::gateway::{GatewayIntents, Ready};
 use serenity::model::id::UserId;
 use serenity::model::permissions::Permissions;
 use serenity::prelude::*;
-use serenity::utils::{content_safe, ContentSafeOptions};
+use serenity::utils::{content_safe, ContentSafeOptions, MessageBuilder};
 use tokio::sync::Mutex;
 
 struct MessageLogger;
+struct CabbageableLogger;
+struct UserRegistery;
 
 impl TypeMapKey for MessageLogger {
     type Value = Arc<RwLock<HashMap<u64, String>>>;
+}
+
+impl TypeMapKey for CabbageableLogger {
+    type Value = Arc<RwLock<HashMap<u64, bool>>>;
+}
+
+impl TypeMapKey for UserRegistery {
+    type Value = Arc<RwLock<HashMap<u64, Vec<String>>>>;
 }
 
 struct Handler;
@@ -48,7 +61,7 @@ impl EventHandler for Handler {
 }
 
 #[group]
-#[commands(test, last)]
+#[commands(test, last, cabbage, register)]
 struct Game;
 
 #[hook]
@@ -58,6 +71,34 @@ async fn before(ctx: &Context, msg: &Message, command_name: &str) -> bool {
 
 #[hook]
 async fn normal_message(ctx: &Context, msg: &Message) {
+    // if msg.content.to_lowercase().contains("cabbage") {
+    //     if let Some(guild) = msg.guild(&ctx.cache) {
+    //         if let Some(target) = guild.member_named(user) {
+    //             let lock = {
+    //                 let data = ctx.data.read().await;
+    //                 data.get::<MessageLogger>().unwrap().clone()
+    //             };
+        
+    //             let logger = lock.read().await;
+    //             let self_entry = logger.get(msg.author.id.as_u64());
+    //             let self_last = self_entry.unwrap_or(&String::new());
+    //             let target_entry = logger.get(target.user.id.as_u64());
+    //             let target_last = target_entry.unwrap_or(&String::new());
+    //             drop(logger);
+
+    //             if self_last == &target.user.name && target_last.eq_ignore_ascii_case("minimuffin") {}
+    //             let message = MessageBuilder::new()
+    //                 .mention(&msg.author)
+    //                 .push(" cabbaged ")
+    //                 .mention(target)
+    //                 .build();
+
+    //             msg.reply_ping(&ctx, message).await?;
+    //         }
+    //     }
+    // }
+
+    // update data
     let lock = {
         let data = ctx.data.read().await;
         data.get::<MessageLogger>().unwrap().clone()
@@ -116,15 +157,36 @@ async fn main() {
         .await
         .unwrap();
 
-    // add hashmap to bot data
+    // add data to bot
     {
         let mut data = client.data.write().await;
         data.insert::<MessageLogger>(Arc::new(RwLock::new(HashMap::default())));
+        data.insert::<CabbageableLogger>(Arc::new(RwLock::new(HashMap::default())));
+        data.insert::<UserRegistery>(Arc::new(RwLock::new(HashMap::default())));
     }
 
     if let Err(why) = client.start().await {
         println!("Client error: {:?}", why);
     }
+}
+
+#[command]
+async fn register(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
+    let lock = {
+        let data = ctx.data.read().await;
+        data.get::<UserRegistery>().unwrap().clone()
+    };
+    
+    
+    {
+        let mut user_registry = lock.write().await;
+        let entry = user_registry.entry(msg.author.id.as_u64().clone()).or_insert(Vec::new());
+        entry.push(args.rest().to_string());
+        msg.channel_id.send_message(&ctx, |m|
+            m.embed(|e| e.title("registered").description(&entry[0]))).await?;
+    }
+
+    Ok(())
 }
 
 #[command]
@@ -145,6 +207,36 @@ async fn last(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
         let entry = logger.get(msg.author.id.as_u64());
         msg.reply(&ctx, entry.unwrap_or(&"NA".to_string())).await?;
     }
+
+    Ok(())
+}
+
+#[command]
+async fn cabbage(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
+    // let user = args.rest();
+    // if let Some(guild) = msg.guild(&ctx.cache) {
+    //     if let Some(target) = guild.member_named(user) {
+    //         let lock = {
+    //             let data = ctx.data.read().await;
+    //             data.get::<MessageLogger>().unwrap().clone()
+    //         };
     
+    //         let logger = lock.read().await;
+    //         let self_entry = logger.get(msg.author.id.as_u64());
+    //         let self_last = self_entry.unwrap_or(&String::new());
+    //         let target_entry = logger.get(target.user.id.as_u64());
+    //         let target_last = target_entry.unwrap_or(&String::new());
+    //         drop(logger);
+
+    //         if self_last == &target.user.name && target_last.eq_ignore_ascii_case("minimuffin") {}
+    //         let message = MessageBuilder::new()
+    //             .mention(&msg.author)
+    //             .push(" cabbaged ")
+    //             .mention(target)
+    //             .build();
+
+    //         msg.reply_ping(&ctx, message).await?;
+    //     }
+    // }
     Ok(())
 }
