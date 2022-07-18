@@ -28,6 +28,12 @@ use serenity::prelude::*;
 use serenity::utils::{content_safe, ContentSafeOptions};
 use tokio::sync::Mutex;
 
+struct MessageLogger;
+
+impl TypeMapKey for MessageLogger {
+    type Value = Arc<RwLock<HashMap<u64, String>>>;
+}
+
 struct Handler;
 
 #[async_trait]
@@ -42,8 +48,27 @@ impl EventHandler for Handler {
 }
 
 #[group]
-#[commands(test)]
+#[commands(test, last)]
 struct Game;
+
+#[hook]
+async fn before(ctx: &Context, msg: &Message, command_name: &str) -> bool {
+    true
+}
+
+#[hook]
+async fn normal_message(ctx: &Context, msg: &Message) {
+    let lock = {
+        let data = ctx.data.read().await;
+        data.get::<MessageLogger>().unwrap().clone()
+    };
+
+    {
+        let mut logger = lock.write().await;
+        let entry = logger.entry(msg.author.id.as_u64().clone()).or_insert("".to_string());
+        *entry = msg.content.to_string();
+    }
+}
 
 #[tokio::main]
 async fn main() {
@@ -77,11 +102,11 @@ async fn main() {
             .on_mention(Some(bot_id))
             .prefix("+")
             .owners(owners))
-        .group(&GAME_GROUP);
         // .before(f)
         // .after(f)
-        // .normal_message(f)
+        .normal_message(normal_message)
         // .help(h)
+        .group(&GAME_GROUP);
         // .group(group);
 
     let intents = GatewayIntents::all();
@@ -91,6 +116,12 @@ async fn main() {
         .await
         .unwrap();
 
+    // add hashmap to bot data
+    {
+        let mut data = client.data.write().await;
+        data.insert::<MessageLogger>(Arc::new(RwLock::new(HashMap::default())));
+    }
+
     if let Err(why) = client.start().await {
         println!("Client error: {:?}", why);
     }
@@ -99,5 +130,21 @@ async fn main() {
 #[command]
 async fn test(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
     msg.reply(&ctx, "sussy").await?;
+    Ok(())
+}
+
+#[command]
+async fn last(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
+    let lock = {
+        let data = ctx.data.read().await;
+        data.get::<MessageLogger>().unwrap().clone()
+    };
+    
+    {
+        let logger = lock.read().await;
+        let entry = logger.get(msg.author.id.as_u64());
+        msg.reply(&ctx, entry.unwrap_or(&"NA".to_string())).await?;
+    }
+    
     Ok(())
 }
