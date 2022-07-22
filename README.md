@@ -52,6 +52,7 @@ the repetitions of that word hit, anyone hearing can say turnip to person b
 
 ### time dilation
 - due to special relativity, some rules, such as 10 second turnips, can be exploited by someone determined ... and insane enough
+- the same applies for gravitational time dilation (thanks Boris)
 
 ### clarifications
 - person b may be cabbaged by person a if and only if the last thing person a said was person b's name.
