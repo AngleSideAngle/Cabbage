@@ -9,7 +9,7 @@ A simple interaction based Discord bot is also being worked on to handle single 
 if the last word person a said was person b's name, person a may be able to cabbage person b depending on what follows.
 - if person b says minimuffin, they are safe from being cabbaged
 - if person b says anything other than minimuffin/s, person a gets a cabbage opportunity
-- if person b says nothing for 10 seconds, person a gets a cabbage opportunity
+- if person b says nothing for 10 seconds and was talking previously, person a gets a cabbage opportunity
 
 when person a has a cabbage opportunity, they can say cabbage to person b within 10 seconds of the cabbage opportunity arising and person b will now be cabbaged (that does not imply any status or effects).
 
@@ -85,3 +85,10 @@ the repetitions of that word hit, anyone hearing can say turnip to person b
 - A: Hi tired
 - B: What?
 - A: Cabbage
+
+
+
+
+
+
+btw asa is sus LOL XD
