@@ -1,9 +1,5 @@
 # The cabbage game
 
-<img src='https://w.joelgrayson.com/image/certified.png' width=100>
-A video game, the Muffin Game 🧁, is available at https://joelgrayson.com/muffin
-A simple interaction based Discord bot is also being worked on to handle single target cabbage functions.
-
 ## single target functions (a -> b)
 ### cabbage
 if the last word person a said was person b's name, person a may be able to cabbage person b depending on what follows.
